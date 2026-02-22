@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        function InputComponent({setInput, inputMessage}){
+          const [message,saveMessage]=React.useState('');
+          function updateMessage(){
+            setInput(saveInput=>[...saveInput,{image:'sender',message:message,key:crypto.randomUUID()}]);
+            let chatBotResponse= Chatbot.getResponse(message);
+           setInput(saveInput=>[...saveInput,{image:'robot',message:chatBotResponse,key:crypto.randomUUID()}]);
+           saveMessage('');
+          }
+
+          function getInput(event){
+            saveMessage(message=>event.target.value);
+            console.log(message);
+           
+
+          }
+           
+            return <>
+            <input type="text" placeholder='enter a message' value={message} onChange={getInput}/>
+            <button onClick={updateMessage}>send</button>
+            </>
+        }
+        function ChatMessageComponent({setInput, inputMessage}){
+
+          //let chatBotResponse= Chatbot.getResponse(message);
+          return <>
+          {inputMessage.map(input=>(
+            <div>
+            {input.image==='robot'&& <img src="robot.png" alt="image" width="50"/>}
+            <>{input.message}</>
+            {input.image==='sender' && <img src='user.png' alt='userImage' width='50'></img>}
+            
+         </div>
+          ))}
+          </>
+          // return  <div>
+           // {image==='robot'&& <img src="robot.png" alt="image" width="50"/>}
+           // <>{message}</>
+           // {image==='sender' && <img src='user.png' alt='userImage' width='50'></img>}
+          //  
+         //</div>
+        }
+
+        function App(){
+            const [inputMessage, setInput]=React.useState([
+
+          {
+            image : 'sender',
+            message : 'Hi',
+            key: 'id1'
+          },
+          {
+            image:'robot',
+            message: 'How can i help you',
+            key: 'id2'
+          },
+          {
+            image: 'sender',
+            message:'What is Todays Date?',
+            key:'id3'
+          },
+          {
+            image:'robot',
+            message:'Today is 19th Feb 2026',
+            key:'id4' 
+          }
+
+          ])
+          //setInput{[...inputMessage],[{image:'sender',message:'what is the time now?',key:crypto.randomUUID()}]}
+          return <>
+            <InputComponent setInput={setInput} inputMessage={inputMessage} />
+            <ChatMessageComponent setInput={setInput} inputMessage={inputMessage}/>
+            {/*inputMessage.map((input)=>(
+             
+              <ChatMessageComponent image={input.image} message={input.message}/>)
+            )*/}
+            </>
+        
+      
+        }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App/>);
+    </script>
+  </body>
+</html>
