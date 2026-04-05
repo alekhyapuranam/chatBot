@@ -1,0 +1,27 @@
+.input_button{
+        padding:12px 24px;
+        border-radius: 10%;
+        margin-left: 12px;
+        border: none;
+        background-color: rgb(25,135,84);
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        
+      }
+      .input-box{
+        padding:12px 15px;
+        border-radius: 10px;
+         font-size: 20px;
+         border-width: 1px;
+         margin-right: 10px;
+         width: 100%;
+         
+        
+      }
+      .input-component{
+        display: flex;
+       
+       
+        
+      }

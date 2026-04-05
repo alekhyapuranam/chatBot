@@ -1,0 +1,11 @@
+ .app-component{
+        
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+
+      }
+     
